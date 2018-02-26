@@ -1,13 +1,21 @@
 package com.ebike.android;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -17,7 +25,6 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.MapStatus;
-import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
@@ -29,24 +36,72 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public LocationClient mLocationClient;
-    private TextView positionText;
     private MapView mapView;
     private BaiduMap baiduMap;
     private boolean isFirstLocate = true;
+    private DrawerLayout mDrawerLayout;
+    private BDLocation mLocation;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
+
         mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(new MyLocationListener());
         SDKInitializer.initialize(getApplicationContext());
-        setContentView(R.layout.activity_main);
-        mapView = (MapView) findViewById(R.id.bmapView);
+
+        setContentView(R.layout.layout_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_main);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_main);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                mDrawerLayout.closeDrawers();
+                switch(item.getItemId()){
+                    case R.id.loc_map:
+                        break;
+                    case R.id.ride_info:
+                        Intent intent_1 = new Intent(MainActivity.this, RideInfoActivity.class);
+                        startActivity(intent_1);
+                        break;
+                    case R.id.unlock:
+                        Intent intent_2 = new Intent(MainActivity.this, UnlockActivity.class);
+                        startActivity(intent_2);
+                        break;
+                    case R.id.about_me:
+                        Intent intent_3 = new Intent(MainActivity.this, AboutMeActivity.class);
+                        startActivity(intent_3);
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.mipmap.home);
+        }
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapStatus.Builder builder = new MapStatus.Builder();
+                builder.target(new LatLng(mLocation.getLatitude(), mLocation.getLongitude()));
+                builder.zoom(18f);
+                baiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+            }
+        });
+
+        mapView = (MapView) findViewById(R.id.map_view);
         baiduMap = mapView.getMap();
-        baiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
-        baiduMap.setTrafficEnabled(true);
         baiduMap.setMyLocationEnabled(true);
-        positionText = (TextView) findViewById(R.id.position_text_view);
+
         List<String> permissionList = new ArrayList<>();
         if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
@@ -63,20 +118,17 @@ public class MainActivity extends AppCompatActivity {
         }else{
             requestLocation();
         }
+
     }
 
     private void navigateTo(BDLocation bdlocation){
-        /*LatLng ll = new LatLng(bdlocation.getLatitude(), bdlocation.getLongitude());
-        MapStatusUpdate update = MapStatusUpdateFactory.newLatLng(ll);
-        baiduMap.animateMapStatus(update);
-        update = MapStatusUpdateFactory.zoomTo(16f);
-        baiduMap.animateMapStatus(update);*/
         if(isFirstLocate){
             MapStatus.Builder builder = new MapStatus.Builder();
             builder.target(new LatLng(bdlocation.getLatitude(), bdlocation.getLongitude()));
-            builder.zoom(19f);
+            builder.zoom(18f);
             baiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             isFirstLocate = false;
+            Toast.makeText(MainActivity.this, "定位成功", Toast.LENGTH_LONG).show();
         }
         MyLocationData.Builder locationBuilder = new MyLocationData.Builder();
         locationBuilder.latitude(bdlocation.getLatitude());
@@ -84,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         MyLocationData locationData = locationBuilder.build();
         baiduMap.setMyLocationData(locationData);
     }
+
 
     @Override
     protected void onPostResume() {
@@ -104,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initLocation(){
         LocationClientOption option = new LocationClientOption();
-        option.setScanSpan(5000);
         option.setIsNeedAddress(true);
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
         option.setCoorType("bd09ll");
@@ -135,16 +187,8 @@ public class MainActivity extends AppCompatActivity {
     public class MyLocationListener implements BDLocationListener  {
         @Override
         public void onReceiveLocation(BDLocation bdlocation) {
-            /*StringBuilder currentPosition = new StringBuilder();
-            currentPosition.append("纬度：").append(bdlocation.getLatitude()).append("\n");
-            currentPosition.append("经度：").append(bdlocation.getLongitude()).append("\n");
-            currentPosition.append("省：").append(bdlocation.getProvince()).append("\n");
-            currentPosition.append("市:").append(bdlocation.getCity()).append("\n");
-            currentPosition.append("区：").append(bdlocation.getDistrict()).append("\n");
-            currentPosition.append("街道：").append(bdlocation.getStreet()).append("\n");
-            currentPosition.append("定位方式：").append(bdlocation.getLocType()).append("\n");
-            Toast.makeText(MainActivity.this, currentPosition, Toast.LENGTH_SHORT).show();*/
-            navigateTo(bdlocation);
+            mLocation = bdlocation;
+            navigateTo(mLocation);
         }
     }
 
@@ -154,5 +198,16 @@ public class MainActivity extends AppCompatActivity {
         mLocationClient.stop();
         mapView.onDestroy();
         baiduMap.setMyLocationEnabled(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+               mDrawerLayout.openDrawer(GravityCompat.START);
+               break;
+            default:
+        }
+        return true;
     }
 }

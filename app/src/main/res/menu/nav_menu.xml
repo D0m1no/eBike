@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/loc_map"
+            android:icon="@mipmap/loc_map"
+            android:title="一键定位"/>
+        <item android:id="@+id/ride_info"
+            android:icon="@mipmap/ride_info"
+            android:title="出行建议"/>
+        <item android:id="@+id/unlock"
+            android:icon="@mipmap/unlock"
+            android:title="解锁"/>
+        <item android:id="@+id/about_me"
+            android:icon="@mipmap/about_me"
+            android:title="我"/>
+    </group>
+
+</menu>
