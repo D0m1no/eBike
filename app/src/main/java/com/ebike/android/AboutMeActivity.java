@@ -56,12 +56,11 @@ public class AboutMeActivity extends AppCompatActivity {
             }
         });
 
-        Button instruction = (Button) findViewById(R.id.instruction);
-        instruction.setOnClickListener(new View.OnClickListener() {
+        Button intruction = (Button) findViewById(R.id.instruction);
+        intruction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AboutMeActivity.this, instruction.class);
-                startActivity(intent);
+                Toast.makeText(AboutMeActivity.this, "此功能尚未开发", Toast.LENGTH_LONG).show();
             }
         });
 

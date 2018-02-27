@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceiveLocation(BDLocation bdlocation) {
             mLocation = bdlocation;
-            navigateTo(mLocation);
+            navigateTo(bdlocation);
         }
     }
 

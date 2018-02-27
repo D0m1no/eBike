@@ -1,0 +1,5 @@
+04bb212 HEAD@{0}: reset: moving to origin/master
+bc11f14 HEAD@{1}: commit: 完成了大体的设计
+04bb212 HEAD@{2}: commit: 基本实现地图定位功能
+b3f55af HEAD@{3}: commit: First Commit
+97928ca HEAD@{4}: clone: from https://github.com/NeverPass/eBike.git

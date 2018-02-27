@@ -1,18 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout_copy_doc"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:overScrollMode="never">
-        <TextView
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:singleLine="false"
-            android:text="保养知识：1.车架清洗车架可以用抹布蘸水淋到部件上，这样粘在车架底下的泥块遇到水后很易变软，这个时候只要再用抹布擦拭就可以轻易地去除泥污。个人不赞成用高压水枪等去冲洗单车上的污泥，因为这样清洗，水易进入中轴或者花鼓里，影响零件寿命。此时需要注意一些车架上容易积泥的地方，比如中轴上五通的位置。在用清水洗掉车架上的泥水后，接下来在抹布上倒少许洗洁精，用手简单揉搓后就可以在车架上擦洗，在遇到车架上有脏物的位置，只要轻轻 地来回擦几次，车架就会干净起来。通常不推荐使用洗衣粉等强效的去污剂，因为许多单车都是铝制材料，洗衣粉中含有的碱成分会和铝发生化学反应，天长日久就会导致单车铝的部分出现些颜色怪异的斑纹，所以柔性的去污剂--洗洁精绝对是一个更好的选择。2.轮组、车头和坐管在洗轮组的时候，可以选择用刷鞋子的刷子蘸洗洁精刷外胎上的泥沙。而在洗车圈的时候，最好换成粘有洗洁精的抹布，仔细抹车圈上刹车皮刹过的地方。辐条方面简单的擦洗就可以。在洗完花鼓的时候，同样不要用高压水枪等祛除洗洁精。只需简单淋过水后用干净的抹布擦抹就可以了。洗坐管和坐包的时候，要注意不要让泥水顺着坐管夹的缝流进坐管里。在坐包底下，往往是泥水飞上来最多的地方，要细心用抹布把泥抹掉。对于轮胎可以用稍微硬一些的刷子刷去轮胎上的砂石和灰尘，进行简单的保养。3.指拨、前拨、后拨洗完以上的配件后接下来是洗指拨了，指拨里面是比较复杂的，零件内有较多的黄油起着润滑作用。在清洁指拨时最好用抹布轻轻擦一下，干净就可以了。洗前拨、后拨的时候，可以用水管直接对准前后拨的空隙地方用水冲洗，这样可把卡在前后拨里的泥水和沙子冲洗掉。冲掉后可同样用洗洁精把前后拨上面的油污洗掉。4.前叉、脚踏、刹车清洗前叉和脚踏很简单，脚踏只要把泥水洗掉就可。前叉最好不用水冲洗，在擦洗叉子的内管时候，要把抹布上的水拧干后再去擦前叉的内管。前叉内管使用一段时间后会有些杂质留在上面，可以用棉签轻轻擦掉，最好能够养成保持前叉清洁的习惯，这也是对前叉最基本的保养。在洗刹车时候(以V刹为准)可以用水管直接冲洗在刹车里面留有的泥沙，为接下来的保养做好准备。对于轮盘、前后变速器、导轮等都可以用刷子去除灰尘和小的污垢。5.牙盘、飞轮和链条这三个配件可能是最脏的部位了。因为配件上留有润滑油，灰尘最容易粘附。我们可以先在抹布上同样倒上洗洁精，蘸了水后就可以去清洗牙盘，在洗牙盘的时候，尽量用抹布把每一个牙盘洗干净，当洗完后用水一冲就会很干净。接下来要洗的就是飞轮了。洗飞轮要把后轮拆下来清洗。首先放松后刹车，这样刹车就不夹着轮子了。先把后轮快拆两边的螺钉扭松，这个时候轻轻拍一下后轮，轮子就能出来了。把轮子放在地上，用抹布在飞轮上仔细擦抹后，把轮子装回车子上要注意后拨的位置，慢慢拉开后拨就可以把轮子放进去。这个过程很简单，经过一次两次拆装后即可了解。最后要清洗的就是链条了，长时间骑行后，链条上容易粘上许多泥沙。洗链条的方法多种，笔者在这里介绍两种方法:第一种是使用煤油洗链条，把粘有煤油的抹布包住链条去来回拖动。弊端就是会让自己身上留下异味，沾上油垢和油渍。第二种方法则是用洗洁精。这需要注意的是在洗链条的时候，最好能使用45度左右的热水，这个温度更容易发挥其清洁作用。除了需要用粘有洗洁精的抹布来回擦拭链条外，最好再用粗一点的毛刷子慢慢的把每一节链条刷一次，很快黑色的链条就会呈现出原有的色泽。"/>
-    </ScrollView>
-</LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_copy_doc"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" />
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical" android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    android:overScrollMode="never">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:singleLine="false"
+                        android:text="保养知识：1.车架清洗车架可以用抹布蘸水淋到部件上，这样粘在车架底下的泥块遇到水后很易变软，这个时候只要再用抹布擦拭就可以轻易地去除泥污。个人不赞成用高压水枪等去冲洗单车上的污泥，因为这样清洗，水易进入中轴或者花鼓里，影响零件寿命。此时需要注意一些车架上容易积泥的地方，比如中轴上五通的位置。在用清水洗掉车架上的泥水后，接下来在抹布上倒少许洗洁精，用手简单揉搓后就可以在车架上擦洗，在遇到车架上有脏物的位置，只要轻轻 地来回擦几次，车架就会干净起来。通常不推荐使用洗衣粉等强效的去污剂，因为许多单车都是铝制材料，洗衣粉中含有的碱成分会和铝发生化学反应，天长日久就会导致单车铝的部分出现些颜色怪异的斑纹，所以柔性的去污剂--洗洁精绝对是一个更好的选择。2.轮组、车头和坐管在洗轮组的时候，可以选择用刷鞋子的刷子蘸洗洁精刷外胎上的泥沙。而在洗车圈的时候，最好换成粘有洗洁精的抹布，仔细抹车圈上刹车皮刹过的地方。辐条方面简单的擦洗就可以。在洗完花鼓的时候，同样不要用高压水枪等祛除洗洁精。只需简单淋过水后用干净的抹布擦抹就可以了。洗坐管和坐包的时候，要注意不要让泥水顺着坐管夹的缝流进坐管里。在坐包底下，往往是泥水飞上来最多的地方，要细心用抹布把泥抹掉。对于轮胎可以用稍微硬一些的刷子刷去轮胎上的砂石和灰尘，进行简单的保养。3.指拨、前拨、后拨洗完以上的配件后接下来是洗指拨了，指拨里面是比较复杂的，零件内有较多的黄油起着润滑作用。在清洁指拨时最好用抹布轻轻擦一下，干净就可以了。洗前拨、后拨的时候，可以用水管直接对准前后拨的空隙地方用水冲洗，这样可把卡在前后拨里的泥水和沙子冲洗掉。冲掉后可同样用洗洁精把前后拨上面的油污洗掉。4.前叉、脚踏、刹车清洗前叉和脚踏很简单，脚踏只要把泥水洗掉就可。前叉最好不用水冲洗，在擦洗叉子的内管时候，要把抹布上的水拧干后再去擦前叉的内管。前叉内管使用一段时间后会有些杂质留在上面，可以用棉签轻轻擦掉，最好能够养成保持前叉清洁的习惯，这也是对前叉最基本的保养。在洗刹车时候(以V刹为准)可以用水管直接冲洗在刹车里面留有的泥沙，为接下来的保养做好准备。对于轮盘、前后变速器、导轮等都可以用刷子去除灰尘和小的污垢。5.牙盘、飞轮和链条这三个配件可能是最脏的部位了。因为配件上留有润滑油，灰尘最容易粘附。我们可以先在抹布上同样倒上洗洁精，蘸了水后就可以去清洗牙盘，在洗牙盘的时候，尽量用抹布把每一个牙盘洗干净，当洗完后用水一冲就会很干净。接下来要洗的就是飞轮了。洗飞轮要把后轮拆下来清洗。首先放松后刹车，这样刹车就不夹着轮子了。先把后轮快拆两边的螺钉扭松，这个时候轻轻拍一下后轮，轮子就能出来了。把轮子放在地上，用抹布在飞轮上仔细擦抹后，把轮子装回车子上要注意后拨的位置，慢慢拉开后拨就可以把轮子放进去。这个过程很简单，经过一次两次拆装后即可了解。最后要清洗的就是链条了，长时间骑行后，链条上容易粘上许多泥沙。洗链条的方法多种，笔者在这里介绍两种方法:第一种是使用煤油洗链条，把粘有煤油的抹布包住链条去来回拖动。弊端就是会让自己身上留下异味，沾上油垢和油渍。第二种方法则是用洗洁精。这需要注意的是在洗链条的时候，最好能使用45度左右的热水，这个温度更容易发挥其清洁作用。除了需要用粘有洗洁精的抹布来回擦拭链条外，最好再用粗一点的毛刷子慢慢的把每一节链条刷一次，很快黑色的链条就会呈现出原有的色泽。"/>
+                </ScrollView>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+    <android.support.design.widget.NavigationView
+        android:layout_height="match_parent"
+        android:layout_width="200dp"
+        android:id="@+id/nav_view_copy_doc"
+        android:layout_gravity="start"
+        app:menu="@menu/nav_menu"
+        app:headerLayout="@layout/nav_header">
+    </android.support.design.widget.NavigationView>
+</android.support.v4.widget.DrawerLayout>
